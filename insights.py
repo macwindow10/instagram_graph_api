@@ -56,7 +56,7 @@ def getUserInsights(params):
     return makeApiCall(url, endpointParams, params['debug'])  # make the api call
 
 
-def getLatestPost():
+def getAllPost():
     params = getCreds()  # get creds
     response = getUserMedia(params)  # get users media from the api
 
@@ -90,7 +90,7 @@ def getPostInsights(latest_media_id, media_type):
 
 
 if __name__ == "__main__":
-    response = getLatestPost()
+    response = getAllPost()
     latest_media_id = response[0]['id']
     media_type = response[0]['media_type']
     response = getPostInsights(latest_media_id=latest_media_id, media_type=media_type)

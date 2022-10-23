@@ -29,11 +29,11 @@
     <div class="container tm-container-2">
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="tm-welcome-text">Instagram Posts Insights</h2>
+                <h2 class="tm-welcome-text">Instagram Posts <i style="color: red">[User Account : {{ instagram_username }}]</i></h2>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="display: none">
             <div class="col-lg-12">
                 <input style="background-color: light-blue; padding: 10px"
                        type="button"
@@ -43,6 +43,32 @@
 
         <div class="row tm-section-mb">
             <div class="col-lg-12">
+
+                {% block content %}
+                {% for post in posts %}
+                <div class=" tm-timeline-item">
+                    <div class="tm-timeline-item-inner">
+                        <img src="{{ post['media_url'] }}" alt="Image" class="rounded-circle tm-img-timeline">
+                        <div class="tm-timeline-connector">
+                            <p class="mb-0">&nbsp;</p>
+                        </div>
+                        <div class="tm-timeline-description-wrap">
+                            <div class="tm-bg-dark tm-timeline-description">
+                                <h3 class="tm-text-green tm-font-400">Title : {{ post['caption'] }}</h3>
+                                <p><a href="{{ post['permalink'] }}">Link to original post</a> </p>
+                                <p>Media Type : {{ post['media_type'] }}</p>
+                                <p>User Name : {{ post['username'] }}</p>
+                                <p>Post ID : {{ post['id'] }}</p>
+                                <p class="tm-text-green float-right mb-0">Posted On : {{ post['timestamp'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-timeline-connector-vertical"></div>
+                </div>
+                {% endfor %}
+                {% endblock %}
+
                 <div class=" tm-timeline-item">
                     <div class="tm-timeline-item-inner">
                         <img src="static/img/img-01.jpg" alt="Image" class="rounded-circle tm-img-timeline">
@@ -51,10 +77,12 @@
                         </div>
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark tm-timeline-description">
-                                <h3 class="tm-text-green tm-font-400">Nulla venenatis purus nec quam</h3>
-                                <p>You may tell your co-workers about TemplateMo free stuffs to download and use for any
-                                    website project. Thank you for supporting us.</p>
-                                <p class="tm-text-green float-right mb-0">New Event . 12 July 2018</p>
+                                <h3 class="tm-text-green tm-font-400">Title : Nulla venenatis</h3>
+                                <p><a href="#">Link to original post</a> </p>
+                                <p>Media Type : IMAGE</p>
+                                <p>User Name : mac.window.112022</p>
+                                <p>Post ID : 18325478134037154</p>
+                                <p class="tm-text-green float-right mb-0">Posted On : 2022-10-15T11:00:10+0000</p>
                             </div>
                         </div>
                     </div>
@@ -70,10 +98,12 @@
                         </div>
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark-light tm-timeline-description">
-                                <h3 class="tm-text-cyan tm-font-400">Vestibulum ante ipsum primis</h3>
-                                <p>In imperdiet nisl quis sapien pellentesque, non rhoncus elit sollicitudin. Donec
-                                    pharetra egestas magna at eleifend. Sed non magna vitae enim tempus faucibus.</p>
-                                <p class="tm-text-cyan float-right mb-0">Another Story . 9 July 2018</p>
+                                <h3 class="tm-text-green tm-font-400">Title : Vestibulum ante ipsum</h3>
+                                <p><a href="#">Link to original post</a> </p>
+                                <p>Media Type : IMAGE</p>
+                                <p>User Name : mac.window.112022</p>
+                                <p>Post ID : 18325478134037129</p>
+                                <p class="tm-text-green float-right mb-0">Posted On : 2022-10-13T21:00:10+0000</p>
                             </div>
                         </div>
                     </div>
@@ -88,11 +118,12 @@
                         </div>
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark tm-timeline-description">
-                                <h3 class="tm-text-yellow tm-font-400">Pellentesque accumsan convallis</h3>
-                                <p>Suspendisse felis massa, maximus sed mauris at, elementum fermentum nisl. Aliquam
-                                    quis elit vel ipsum ornare sollicitudin. Nulla et dolor eget nisi varius
-                                    convallis.</p>
-                                <p class="tm-text-yellow float-right mb-0">Latest News . 30 June 2018</p>
+                                <h3 class="tm-text-green tm-font-400">Title : Pellentesque accumsan convallis</h3>
+                                <p><a href="#">Link to original post</a> </p>
+                                <p>Media Type : IMAGE</p>
+                                <p>User Name : mac.window.112022</p>
+                                <p>Post ID : 18325478134037199</p>
+                                <p class="tm-text-green float-right mb-0">Posted On : 2022-10-12T07:00:10+0000</p>
                             </div>
                         </div>
                     </div>
@@ -107,11 +138,12 @@
                         </div>
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark-light tm-timeline-description">
-                                <h3 class="tm-text-orange tm-font-400">Lorem ipsum dolor sit amet</h3>
-                                <p>Phasellus at quam facilisis sem congue lacinia. Fusce risus velit, bibendum in magna
-                                    eu, sollicitudin pellentesque dolor. Nulla facilisi. Fusce libero mauris, maximus et
-                                    liqula at.</p>
-                                <p class="tm-text-orange float-right mb-0">New Project . 22 June 2018</p>
+                                <h3 class="tm-text-green tm-font-400">Title : Nulla venenatis</h3>
+                                <p><a href="#">Link to original post</a> </p>
+                                <p>Media Type : IMAGE</p>
+                                <p>User Name : mac.window.112022</p>
+                                <p>Post ID : 18325478134037110</p>
+                                <p class="tm-text-green float-right mb-0">Posted On : 2022-10-10T08:00:10+0000</p>
                             </div>
                         </div>
                     </div>
@@ -162,10 +194,6 @@
     function getData() {
         console.log('getData');
     }
-
-
-
-
 
 
     </script>
