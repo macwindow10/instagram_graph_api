@@ -27,9 +27,18 @@
     </div>
 
     <div class="container tm-container-2">
+
+        <div style="width: 600px">
+            <p>
+            <h2 class="tm-welcome-text">Instagram Posts' Analysis</h2>
+            </p>
+            <canvas id="myChart"></canvas>
+        </div>
         <div class="row">
+
             <div class="col-lg-12">
-                <h2 class="tm-welcome-text">Instagram Posts <i style="color: red">[User Account : {{ instagram_username }}]</i></h2>
+                <h2 class="tm-welcome-text">Instagram Posts <i style="color: red">[User Account : {{ instagram_username
+                    }}]</i></h2>
             </div>
         </div>
 
@@ -48,14 +57,18 @@
                 {% for post in posts %}
                 <div class=" tm-timeline-item">
                     <div class="tm-timeline-item-inner">
+                        {% if post['media_type'] == 'IMAGE' %}
                         <img src="{{ post['media_url'] }}" alt="Image" class="rounded-circle tm-img-timeline">
+                        {% else %}
+                        <img src="{{ post['thumbnail_url'] }}" alt="Image" class="rounded-circle tm-img-timeline">
+                        {% endif %}
                         <div class="tm-timeline-connector">
                             <p class="mb-0">&nbsp;</p>
                         </div>
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark tm-timeline-description">
                                 <h3 class="tm-text-green tm-font-400">Title : {{ post['caption'] }}</h3>
-                                <p><a href="{{ post['permalink'] }}">Link to original post</a> </p>
+                                <p><a href="{{ post['permalink'] }}">Link to original post</a></p>
                                 <p>Media Type : {{ post['media_type'] }}</p>
                                 <p>User Name : {{ post['username'] }}</p>
                                 <p>Post ID : {{ post['id'] }}</p>
@@ -78,7 +91,7 @@
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark tm-timeline-description">
                                 <h3 class="tm-text-green tm-font-400">Title : Nulla venenatis</h3>
-                                <p><a href="#">Link to original post</a> </p>
+                                <p><a href="#">Link to original post</a></p>
                                 <p>Media Type : IMAGE</p>
                                 <p>User Name : mac.window.112022</p>
                                 <p>Post ID : 18325478134037154</p>
@@ -99,7 +112,7 @@
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark-light tm-timeline-description">
                                 <h3 class="tm-text-green tm-font-400">Title : Vestibulum ante ipsum</h3>
-                                <p><a href="#">Link to original post</a> </p>
+                                <p><a href="#">Link to original post</a></p>
                                 <p>Media Type : IMAGE</p>
                                 <p>User Name : mac.window.112022</p>
                                 <p>Post ID : 18325478134037129</p>
@@ -119,7 +132,7 @@
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark tm-timeline-description">
                                 <h3 class="tm-text-green tm-font-400">Title : Pellentesque accumsan convallis</h3>
-                                <p><a href="#">Link to original post</a> </p>
+                                <p><a href="#">Link to original post</a></p>
                                 <p>Media Type : IMAGE</p>
                                 <p>User Name : mac.window.112022</p>
                                 <p>Post ID : 18325478134037199</p>
@@ -139,7 +152,7 @@
                         <div class="tm-timeline-description-wrap">
                             <div class="tm-bg-dark-light tm-timeline-description">
                                 <h3 class="tm-text-green tm-font-400">Title : Nulla venenatis</h3>
-                                <p><a href="#">Link to original post</a> </p>
+                                <p><a href="#">Link to original post</a></p>
                                 <p>Media Type : IMAGE</p>
                                 <p>User Name : mac.window.112022</p>
                                 <p>Post ID : 18325478134037110</p>
@@ -190,10 +203,77 @@
     </div>
 
     <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/chart.min.js"></script>
     <script>
+    $( document ).ready(function() {
+        console.log( "ready!" );
+        getData();
+    });
+
     function getData() {
         console.log('getData');
+        $.ajax({
+            type: 'GET',
+            url: 'get_barchart_data',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                const ctx = $('#myChart');
+                const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Engagement', 'Impressions', 'Reach', 'Posts Saved', 'Videos Views'],
+                    datasets: [{
+                        label: 'Posts',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: 'Analysis performed on data since 01 Sep 2022',
+                        font: {
+                            size: 16,
+                            family: 'tahoma',
+                            weight: 'normal',
+                            style: 'italic'
+                        }
+                      }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            }
+        });
     }
+
+
+
+
+
+
 
 
     </script>
