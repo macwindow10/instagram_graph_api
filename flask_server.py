@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, redirect, url_for, request, session
 from insights import getAllPost, getPostInsights, getCreds
+from posting_content import post_image, post_video
 
 app = Flask(__name__)
 
